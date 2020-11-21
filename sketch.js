@@ -1,3 +1,69 @@
+/*
+// examples of different types of data in JS 
+// string 
+var str = "hello";
+console.log(str);
+//number
+var num = 6;
+console.log(num);
+//boolean
+var bool = true;
+console.log(bool);
+//undefined
+var object;
+console.log(object);
+//null
+//reasigning the same undefined object to null;
+object = null;
+console.log(object);
+// array holding values of same data type
+var array1 = [1,30,90,80.8888888,99.90]
+console.log(array1);
+// array holding values of different data type
+var array2 = [2,"speed",false,null]
+console.log(array2);
+//accessing elements of array
+console.log(array1[2]);
+console.log(array2[0]);
+console.log(array2[array2.length-1]);
+//array inside an array
+var array3 = [[1,2],[23],["good","morning"],[null,"hundred"]];
+console.log(array3);
+//accessing the first element of first element array3
+console.log(array3[0][0]);
+
+// access morning
+console.log(array3[2][1]);
+// pushing new element to array
+array3.push("hello");
+array3.push(30);
+console.log(array3);
+//removing the last element of the array
+array3.pop();
+console.log(array3);
+// length of the array
+console.log(array3.length);
+
+*/
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 const Engine = Matter.Engine;
 const World= Matter.World;
 const Bodies = Matter.Bodies;
@@ -7,6 +73,8 @@ var engine, world;
 var box1, pig1,pig3;
 var backgroundImg,platform;
 var bird, slingshot;
+
+var gameState  = "onSling";
 
 
 function preload() {
@@ -69,16 +137,22 @@ function draw(){
 }
 
 function mouseDragged(){
-    Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    if(gameState!=="launched"){
+        Matter.Body.setPosition(bird.body, {x: mouseX , y: mouseY});
+    }
 }
 
 
 function mouseReleased(){
     slingshot.fly();
+    gameState = "launched";
+
+
+
 }
 
 function keyPressed(){
     if(keyCode === 32){
-        slingshot.attach(bird.body);
+    //    slingshot.attach(bird.body);
     }
 }
